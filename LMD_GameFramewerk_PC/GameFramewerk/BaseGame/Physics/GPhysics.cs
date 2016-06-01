@@ -418,7 +418,118 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame.Physics
 			return info;
 		}
 		#endregion
+		#region Removes
+		public void RemoveBody(InfoBody infoBody, bool remove_image = true)
+		{
+			if (remove_image)
+				infoBody.image.Dispose();
+			world.DestroyBody(infoBody.body);
+		}
 
-		// Работу с Joint добавлю в следующихх update
+		public void RemoveBody(Body body)
+		{
+			world.DestroyBody(body);
+		}
+		#endregion
+		#region Create joints
+		#region Revolute joints
+		public Joint AddJoint(Body b1, Body b2, float x, float y, bool enableLimit = false)
+		{
+			RevoluteJointDef jd = new RevoluteJointDef();
+			jd.Initialize(b1, b2, new Vec2(x / metric, y / metric));
+			jd.EnableLimit = enableLimit;
+
+			Joint joint = world.CreateJoint(jd);
+
+			return joint;
+		}
+
+		public Joint AddJoint(Body b1, Body b2, float x, float y, bool collideConnected, bool enableMotor = false,
+			float motor_speed = 0, float maxMotorTorque = float.MaxValue)
+		{
+			RevoluteJointDef jd = new RevoluteJointDef();
+			jd.Initialize(b1, b2, new Vec2(x / metric, y / metric));
+			jd.CollideConnected = collideConnected;
+			jd.EnableMotor = enableMotor;
+			jd.MotorSpeed = motor_speed;
+			jd.MaxMotorTorque = maxMotorTorque;
+
+			Joint joint = world.CreateJoint(jd);
+
+			return joint;
+		}
+
+		public Joint AddJoint(Body b1, Body b2, float x, float y, bool collideConnected, float upperAngle, float lowerAngle, float referenceAngle = 0)
+		{
+			RevoluteJointDef jd = new RevoluteJointDef();
+			jd.Initialize(b1, b2, new Vec2(x / metric, y / metric));
+			jd.CollideConnected = collideConnected;
+			jd.EnableMotor = true;
+			jd.EnableLimit = true;
+
+			jd.LowerAngle = lowerAngle;
+			jd.UpperAngle = upperAngle;
+		
+			jd.ReferenceAngle = referenceAngle;
+
+			Joint joint = world.CreateJoint(jd);
+
+			return joint;
+		}
+		#endregion
+		#region Distance joints
+		public Joint AddDistanceJoint(Body b1, Body b2, float x1, float y1, float x2, float y2, 
+			bool collideConnected = true, float hz = 1f)
+		{
+			DistanceJointDef jd = new DistanceJointDef();
+			jd.Initialize(b1, b2, new Vec2(x1 / metric, y1 / metric), new Vec2(x2 / metric, y2 / metric));
+			jd.FrequencyHz = 0.3f;
+			jd.CollideConnected = collideConnected;
+			jd.FrequencyHz = hz;
+
+			Joint joint = world.CreateJoint(jd);
+
+			return joint;
+		}
+
+		public Joint AddDistanceJoint(Body b1, Body b2, float x1, float y1, float x2, float y2, float length,
+			bool collideConnected = true, float hz = 1f)
+		{
+			DistanceJointDef jd = new DistanceJointDef();
+			jd.Initialize(b1, b2, new Vec2(x1 / metric, y1 / metric), new Vec2(x2 / metric, y2 / metric));
+			jd.FrequencyHz = 0.3f;
+			jd.CollideConnected = collideConnected;
+			jd.FrequencyHz = hz;
+			jd.Length = length;
+
+			Joint joint = world.CreateJoint(jd);
+
+			return joint;
+		}
+		public Joint AddDistanceJoint(Body b1, Body b2, float x1, float y1, float x2, float y2, float length,
+			bool collideConnected = true, float hz = 1f, float dampingRatio = 0)
+		{
+			DistanceJointDef jd = new DistanceJointDef();
+			jd.Initialize(b1, b2, new Vec2(x1 / metric, y1 / metric), new Vec2(x2 / metric, y2 / metric));
+			jd.FrequencyHz = 0.3f;
+			jd.CollideConnected = collideConnected;
+			jd.FrequencyHz = hz;
+			jd.Length = length;
+			jd.DampingRatio = dampingRatio;
+
+			Joint joint = world.CreateJoint(jd);
+
+			return joint;
+		}
+		#endregion
+		public Joint AddJoint(Body b1, Body b2, float x, float y,float ddd)
+		{
+			RevoluteJointDef jd = new RevoluteJointDef();
+			jd.Initialize(b1, b2, new Vec2(x / metric, y / metric));
+			Joint joint = world.CreateJoint(jd);
+			
+			return joint;
+		}
+		#endregion
 	}
 }

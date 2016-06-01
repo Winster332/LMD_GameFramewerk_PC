@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using Box2DX.Common;
+using Box2DX.Dynamics;
 using LMD_GameFramewerk_PC.GameFramewerk.BaseGame.Physics;
 using LMD_GameFramewerk_PC.GameFramewerk.UI;
 
@@ -203,5 +204,101 @@ namespace LMD_GameFramewerk_PC.GameFramewerk
 		InfoBody AddVert(float x, float y, Vec2[] vert, float angle, float density,
 			float friction, float restetution, float mass, GImage image, bool IsBullet = true,
 			bool IsSensor = false, bool AllowSleep = false, short group_index = 1, object userDate = null);
+		/// <summary>
+		/// Удаляет тело исходя из объекта класса InfoBody
+		/// </summary>
+		/// <param name="infoBody">Удаляемый объект</param>
+		void RemoveBody(InfoBody infoBody, bool remove_image = true);
+		/// <summary>
+		/// Удаляет тело
+		/// </summary>
+		/// <param name="body">Удаляемое тело</param>
+		void RemoveBody(Body body);
+		/// <summary>
+		/// Создает связь между телами.
+		/// Система координат начинается с [0;0]
+		/// </summary>
+		/// <param name="b1">Первое тело</param>
+		/// <param name="b2">Второе тело</param>
+		/// <param name="x">Координата X</param>
+		/// <param name="y">Координата Y</param>
+		/// <returns></returns>
+		Joint AddJoint(Body b1, Body b2, float x, float y, bool enableLimit);
+		/// <summary>
+		/// Создает связь между телами с возможностью установление вращения
+		/// Система координат начинается с [0;0]
+		/// </summary>
+		/// <param name="b1">Первое тело</param>
+		/// <param name="b2">Второе тело</param>
+		/// <param name="x">Координата X</param>
+		/// <param name="y">Координата Y</param>
+		/// <param name="collideConnected">Могут ли объекты сталкиваться друг с другом</param>
+		/// <param name="enableMotor">Вклучать ли мотор</param>
+		/// <param name="motor_speed">Скорость мотора</param>
+		/// <param name="maxMotorTorque">Максимальная скорость</param>
+		/// <returns></returns>
+		Joint AddJoint(Body b1, Body b2, float x, float y, bool collideConnected, bool enableMotor = false,
+			float motor_speed = 0, float maxMotorTorque = float.MaxValue);
+		/// <summary>
+		/// Создает связь между телами с возможностью установление вращения
+		/// Система координат начинается с [0;0]
+		/// </summary>
+		/// <param name="b1">Первое тело</param>
+		/// <param name="b2">Второе тело</param>
+		/// <param name="x">Координата X</param>
+		/// <param name="y">Координата Y</param>
+		/// <param name="upperAngle">Ограничение вращения вперед</param>
+		/// <param name="lowerAngle">Ограничение вращения назад</param>
+		/// <param name="referenceAngle">ХЗ</param>
+		/// <returns></returns>
+		Joint AddJoint(Body b1, Body b2, float x, float y, bool collideConnected, float upperAngle, float lowerAngle, float referenceAngle = 0);
+		/// <summary>
+		/// Создает связь между дувумя объектами
+		/// Начало координат начинается с [0;0]
+		/// </summary>
+		/// <param name="b1">Первое тело</param>
+		/// <param name="b2">Второе тело</param>
+		/// <param name="x">X первого тела</param>
+		/// <param name="y">Y первого тела</param>
+		/// <param name="x2">X второго тела</param>
+		/// <param name="y2">Y второго тела</param>
+		/// <param name="collideConnected">Сталкиваются ли тела</param>
+		/// <param name="hz">Напряженность</param>
+		/// <returns></returns>
+		Joint AddDistanceJoint(Body b1, Body b2, float x, float y, float x2, float y2, 
+			bool collideConnected = true, float hz = 1f);
+		/// <summary>
+		/// Создает связь между дувумя объектами
+		/// Начало координат начинается с [0;0]
+		/// </summary>
+		/// <param name="b1">Первое тело</param>
+		/// <param name="b2">Второе тело</param>
+		/// <param name="x">X первого тела</param>
+		/// <param name="y">Y первого тела</param>
+		/// <param name="x2">X второго тела</param>
+		/// <param name="y2">Y второго тела</param>
+		/// <param name="length">Длинна</param>
+		/// <param name="collideConnected">Сталкиваются ли тела</param>
+		/// <param name="hz">Напряженность</param>
+		/// <returns></returns>
+		Joint AddDistanceJoint(Body b1, Body b2, float x1, float y1, float x2, float y2, float length,
+			bool collideConnected = true, float hz = 1f);
+		/// <summary>
+		/// Создает связь между дувумя объектами
+		/// Начало координат начинается с [0;0]
+		/// </summary>
+		/// <param name="b1">Первое тело</param>
+		/// <param name="b2">Второе тело</param>
+		/// <param name="x">X первого тела</param>
+		/// <param name="y">Y первого тела</param>
+		/// <param name="x2">X второго тела</param>
+		/// <param name="y2">Y второго тела</param>
+		/// <param name="length">Длинна</param>
+		/// <param name="collideConnected">Сталкиваются ли тела</param>
+		/// <param name="hz">Напряженность</param>
+		/// <param name="dampingRatio">ХЗ</param>
+		/// <returns></returns>
+		Joint AddDistanceJoint(Body b1, Body b2, float x1, float y1, float x2, float y2, float length,
+			bool collideConnected = true, float hz = 1f, float dampingRatio = 0);
 	}
 }
