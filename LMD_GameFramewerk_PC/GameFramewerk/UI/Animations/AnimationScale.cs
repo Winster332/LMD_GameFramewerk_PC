@@ -53,6 +53,7 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.UI.Animations
 			this.Back = Back;
 			this._Back = Back;
 			this.Buffer_duration = new PointF(x_duration, y_duration);
+			this.elementUi.SetAnimation(this);
 
 			x_currentStep = x_begin;
 			y_currentStep = y_begin;

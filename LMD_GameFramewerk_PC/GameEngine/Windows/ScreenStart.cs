@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using LMD_GameFramewerk_PC.GameFramewerk;
 using LMD_GameFramewerk_PC.GameFramewerk.UI;
+using Tao.OpenGl;
 
 namespace LMD_GameFramewerk_PC.GameEngine.Windows
 {
@@ -11,33 +12,47 @@ namespace LMD_GameFramewerk_PC.GameEngine.Windows
 
 		public ScreenStart(IGame game) : base(game)
 		{
-
+			
 		}
 
 		public override void Step(float dt)
 		{
 			this.dt = dt;
-
-			imgLMD.SetWidth(250);
-			imgLMD.SetHeight(200);
 		}
-
+		
 		public override void Draw()
 		{
-			Game.GetGraphics().GetGraphics().Clear(Color.FromArgb(50, 50, 50));
-
 			DrawElements(dt);
 		}
 
 		public override void Resume()
 		{
 			imgLMD = new GImage(Game);
-			imgLMD.SetImage(ResourceGame.text_lmd);
-			imgLMD.SetWidth(50);
-			imgLMD.SetHeight(1);
-			imgLMD.SetX(Game.GetWindowWidth() / 2 + 90);
-			imgLMD.SetY(200);
+			imgLMD.SetTexture(GImage.LoadTexture(@"C:\Users\User\Desktop\WarBugs\dot_f_5.png"));
+			imgLMD.SetWidth(100);
+			imgLMD.SetHeight(100);
+			imgLMD.SetX(Game.GetWindowWidth() / 2);
+			imgLMD.SetY(Game.GetWindowHeight() / 2);
 			AddElement(imgLMD);
+
+			CircleButton but = new CircleButton(Game);
+			but.onClick += ScreenStart_onClick;
+			but.SetX(50);
+			but.SetY(50);
+			but.SetWidth(100);
+			but.SetHeight(100);
+			but.SetRadius(50);
+			but.SetImage(GImage.LoadTexture(@"C:\Users\User\Desktop\WarBugs\button_play.png"));
+
+			GameFramewerk.UI.Animations.AnimationScale anim = new GameFramewerk.UI.Animations.AnimationScale();
+			anim.Initialize(100, 100, 120, 120, 1, 1, but);
+
+			AddElement(but);
+		}
+
+		private void ScreenStart_onClick(GBaseButton button)
+		{
+			System.Console.WriteLine("click");
 		}
 
 		public override void Pause()

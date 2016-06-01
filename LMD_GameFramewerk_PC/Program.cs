@@ -17,7 +17,7 @@ namespace LMD_GameFramewerk_PC
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new GGame());
+			Application.Run(new GGame("LMD_GF", 500, 500));
 		}
 	}
 }

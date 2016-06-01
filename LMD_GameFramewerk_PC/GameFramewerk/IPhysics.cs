@@ -7,7 +7,6 @@ namespace LMD_GameFramewerk_PC.GameFramewerk
 {
 	public interface IPhysics
 	{
-
 		/// <summary>
 		/// Инициализирует мир
 		/// </summary>

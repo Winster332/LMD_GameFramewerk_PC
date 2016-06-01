@@ -35,15 +35,14 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.UI
 
 		public override void SetTouch(float x, float y, TypeTouch type)
 		{
+		//	y = game.GetWindowHeight() - y;
 			if (IsVisible)
 			{
 				float distance = 0;
 				switch (type)
 				{
 					case TypeTouch.Down:
-						distance = (float)Math.Sqrt(Math.Pow(x - GetX(), 2) + Math.Pow(y - GetY(), 2));
-
-						Console.WriteLine("" + distance);
+						distance = (float)Math.Sqrt(Math.Pow(x - GetX(), 2) + Math.Pow(game.GetGraphics().GetSurfaceHeight() - y - GetY(), 2));
 
 						if (distance < GetWidth() / 2)
 						{

@@ -125,9 +125,9 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.UI
 			return Tag;
 		}
 
-		public void SetBitmap(Bitmap bitmap)
+		public void SetImage(uint texture)
 		{
-			image.SetImage(bitmap);
+			image.SetTexture(texture);
 		}
 
 		public override void SetScaleX(float value)

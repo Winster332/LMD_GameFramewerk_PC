@@ -72,7 +72,7 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame.Physics
 			float friction, float restetution, Bitmap image, Object userDate = null)
 		{
 			GImage g_image = new GImage(game);
-			g_image.SetImage(image);
+		//	g_image.SetImage(image);
 			g_image.SetWidth(w);
 			g_image.SetHeight(h);
 
@@ -176,7 +176,7 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame.Physics
 			float friction, float restetution, Bitmap image, Object userDate = null)
 		{
 			GImage g_image = new GImage(game);
-			g_image.SetImage(image);
+		//	g_image.SetImage(image);
 			g_image.SetWidth(radius * 2);
 			g_image.SetHeight(radius * 2);
 
@@ -298,7 +298,7 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame.Physics
 			}
 
 			GImage g_image = new GImage(game);
-			g_image.SetImage(image);
+		//	g_image.SetImage(image);
 			g_image.SetWidth(max_w);
 			g_image.SetHeight(max_h);
 

@@ -18,7 +18,8 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.UI
 				{
 					case TypeTouch.Down:
 						if (x > GetX() - GetWidth() / 2 && x < GetX() + GetWidth() / 2 &&
-							y > GetY() - GetHeight() / 2 && y < GetY() + GetHeight())
+							game.GetGraphics().GetSurfaceHeight() - y > GetY() - GetHeight() / 2 && 
+							game.GetGraphics().GetSurfaceHeight() - y < GetY() + GetHeight())
 						{
 							Animation?.Start();
 						}
@@ -30,7 +31,8 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.UI
 							if (onClick != null)
 							{
 								if (x > GetX() - GetWidth() / 2 && x < GetX() + GetWidth() / 2 &&
-									y > GetY() - GetHeight() / 2 && y < GetY() + GetHeight())
+									game.GetGraphics().GetSurfaceHeight() - y > GetY() - GetHeight() / 2 && 
+									game.GetGraphics().GetSurfaceHeight() - y < GetY() + GetHeight())
 								{
 									onClick(this);
 								}

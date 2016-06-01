@@ -116,9 +116,9 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 						Matrix _matrix = new Matrix();
 						_matrix.Translate(x - radius, y - radius);
 						_matrix.RotateAt(angle, new PointF(x, y));
-						game.GetGraphics().GetGraphics().Transform = _matrix;
+					//	game.GetGraphics().GetGraphics().Transform = _matrix;
 
-						game.GetGraphics().GetGraphics().FillEllipse(new SolidBrush(Color.FromArgb((int)Alpha, Color)), 0, 0, radius * 2, radius * 2);
+					//	game.GetGraphics().GetGraphics().FillEllipse(new SolidBrush(Color.FromArgb((int)Alpha, Color)), 0, 0, radius * 2, radius * 2);
 						break;
 					case TypeParticle.Image:
 						Image.SetWidth(radius * 2);
@@ -132,9 +132,9 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 						Matrix matrix = new Matrix();
 						matrix.Translate(x, y);
 						matrix.RotateAt(angle, new PointF(x, y));
-						game.GetGraphics().GetGraphics().Transform = matrix;
+					//	game.GetGraphics().GetGraphics().Transform = matrix;
 
-						game.GetGraphics().GetGraphics().FillPolygon(new SolidBrush(Color.FromArgb((int)Alpha, Color)), verts);
+					//	game.GetGraphics().GetGraphics().FillPolygon(new SolidBrush(Color.FromArgb((int)Alpha, Color)), verts);
 						break;
 				}
 			}

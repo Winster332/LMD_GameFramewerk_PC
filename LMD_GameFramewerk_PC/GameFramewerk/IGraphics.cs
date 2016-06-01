@@ -8,11 +8,17 @@ namespace LMD_GameFramewerk_PC.GameFramewerk
 		/// Устанавливет текущий графикс
 		/// </summary>
 		/// <param name="g">Графкис указатель которого будет взят</param>
-		void SetGraphics(Graphics g);
+		//	void SetGraphics(Graphics g);
 		/// <summary>
 		/// Возвращает на текущий указатель графикса
 		/// </summary>
 		/// <returns></returns>
-		Graphics GetGraphics();
+		//	Graphics GetGraphics();
+
+		void BeginRender();
+		void EndRender();
+
+		int GetSurfaceWidth();
+		int GetSurfaceHeight();
 	}
 }

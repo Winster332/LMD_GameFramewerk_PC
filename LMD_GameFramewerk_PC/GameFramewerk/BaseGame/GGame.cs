@@ -3,6 +3,8 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using LMD_GameFramewerk_PC.GameFramewerk.BaseGame.Physics;
 using LMD_GameFramewerk_PC.GameFramewerk.Windows;
+using Tao.OpenGl;
+using Tao.FreeGlut;
 
 namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 {
@@ -18,35 +20,37 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 		private ICamera camera;
 		private ISystemParticles systemParticles;
 		private float DeltaTime;
+		public Tao.Platform.Windows.SimpleOpenGlControl glView;
 		private float PrevDeltaTime;
 		#endregion
 
 		/// <summary>
 		/// Инициализирует класс GGame
 		/// </summary>
-		public GGame()
+		public GGame(string title, int width, int height)
 		{
-			MScreen = new ManagementScreen(this);
+			InitializeComponent();
+			glView.InitializeContexts();
 
-			audio = new GAudio();
-			fileIO = new GFileIO();
-			graphics = new GGraphics();
-			input = new GInput();
-			physics = new GPhysics(this);
-			camera = new GCamera();
-			systemParticles = new GSystemParticles(this);
+			this.Text = title;
+			this.Width = width;
+			this.Height = height;
+			this.glView.Size = this.Size;
+		}
 
-			MScreen.SetCurrentScreen(GetStartScreen());
-
-			DoubleBuffered = true;
-			Size = new Size(500, 700);
-			Paint += GGame_Paint;
-			MouseDown += GGame_MouseDown;
-			MouseUp += GGame_MouseUp;
-			MouseMove += GGame_MouseMove;
-
-			DeltaTime = System.DateTime.Now.Millisecond;
+		private void GlView_Paint(object sender, PaintEventArgs e)
+		{
+			DeltaTime = (float)(System.DateTime.Now.Millisecond / PrevDeltaTime); // Вычисляем дельту времени
 			PrevDeltaTime = System.DateTime.Now.Millisecond;
+
+			// Обновляем и перерисовываем активный экран
+			MScreen.Step(DeltaTime);
+
+			graphics.BeginRender();
+
+			MScreen.Draw();
+
+			graphics.EndRender();
 		}
 
 		/// <summary>
@@ -147,16 +151,9 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 			System.Drawing.Graphics g = e.Graphics;
 			g.SmoothingMode = SmoothingMode.AntiAlias;
 
-			GetGraphics().SetGraphics(g); // Устанавливет графикс в текущем такте
+			//	GetGraphics().SetGraphics(g); // Устанавливет графикс в текущем такте
 
-			DeltaTime = (float)(System.DateTime.Now.Millisecond / PrevDeltaTime); // Вычисляем дельту времени
-			PrevDeltaTime = System.DateTime.Now.Millisecond;
-
-			// Обновляем и перерисовываем активный экран
-			MScreen.Step(DeltaTime);
-			MScreen.Draw();
-
-			//	Console.WriteLine("DT: " + DeltaTime);
+			
 
 			this.Invalidate();
 		}
@@ -177,5 +174,66 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 			GetCurrentScreen().TouchDown(e);
 		}
 		#endregion
+
+		private void InitializeComponent()
+		{
+			this.glView = new Tao.Platform.Windows.SimpleOpenGlControl();
+			this.SuspendLayout();
+			// 
+			// glView
+			// 
+			this.glView.AccumBits = ((byte)(0));
+			this.glView.AutoCheckErrors = false;
+			this.glView.AutoFinish = false;
+			this.glView.AutoMakeCurrent = true;
+			this.glView.AutoSwapBuffers = true;
+			this.glView.BackColor = System.Drawing.Color.Black;
+			this.glView.ColorBits = ((byte)(32));
+			this.glView.DepthBits = ((byte)(16));
+			this.glView.Location = new System.Drawing.Point(0, 0);
+			this.glView.Name = "glView";
+			this.glView.Size = new System.Drawing.Size(285, 262);
+			this.glView.StencilBits = ((byte)(0));
+			this.glView.TabIndex = 0;
+			this.glView.Load += new System.EventHandler(this.glView_Load);
+			// 
+			// GGame
+			// 
+			this.ClientSize = new System.Drawing.Size(284, 261);
+			this.Controls.Add(this.glView);
+			this.Name = "GGame";
+			this.Load += new System.EventHandler(this.GGame_Load);
+			this.ResumeLayout(false);
+
+		}
+
+		private void glView_Load(object sender, System.EventArgs e)
+		{
+			
+		}
+
+		private void GGame_Load(object sender, System.EventArgs e)
+		{
+			MScreen = new ManagementScreen(this);
+
+			audio = new GAudio();
+			fileIO = new GFileIO();
+			graphics = new GGraphics(this);
+			input = new GInput();
+			physics = new GPhysics(this);
+			camera = new GCamera();
+			systemParticles = new GSystemParticles(this);
+
+			MScreen.SetCurrentScreen(GetStartScreen());
+
+			DoubleBuffered = true;
+			glView.Paint += GlView_Paint;
+			glView.MouseDown += GGame_MouseDown;
+			glView.MouseUp += GGame_MouseUp;
+			glView.MouseMove += GGame_MouseMove;
+
+			DeltaTime = System.DateTime.Now.Millisecond;
+			PrevDeltaTime = System.DateTime.Now.Millisecond;
+		}
 	}
 }
