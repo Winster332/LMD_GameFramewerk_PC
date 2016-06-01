@@ -53,6 +53,18 @@ namespace LMD_GameFramewerk_PC.GameFramewerk
 		/// </summary>
 		/// <param name="eventArgs"></param>
 		public abstract void TouchUp(MouseEventArgs eventArgs);
+
+		/// <summary>
+		/// Происходит при нажатии клавиши
+		/// </summary>
+		/// <param name="e"></param>
+		public abstract void KeyboardDown(KeyEventArgs e);
+		/// <summary>
+		/// Происходит при отпуске клавиши
+		/// </summary>
+		/// <param name="e"></param>
+		public abstract void KeyboardUp(KeyEventArgs e);
+
 		/// <summary>
 		/// Добавляет новый UI элемент на экран
 		/// </summary>

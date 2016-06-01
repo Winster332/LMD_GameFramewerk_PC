@@ -219,9 +219,21 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 			glView.MouseDown += GGame_MouseDown;
 			glView.MouseUp += GGame_MouseUp;
 			glView.MouseMove += GGame_MouseMove;
+			glView.KeyDown += GlView_KeyDown;
+			glView.KeyUp += GlView_KeyUp;
 
 			DeltaTime = System.DateTime.Now.Millisecond;
 			PrevDeltaTime = System.DateTime.Now.Millisecond;
+		}
+
+		private void GlView_KeyUp(object sender, KeyEventArgs e)
+		{
+			MScreen.GetCurrentScreen().KeyboardUp(e);
+		}
+
+		private void GlView_KeyDown(object sender, KeyEventArgs e)
+		{
+			MScreen.GetCurrentScreen().KeyboardDown(e);
 		}
 
 		public void SetStartScreen(Screen screen)

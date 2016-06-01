@@ -1,4 +1,5 @@
-﻿using LMD_GameFramewerk_PC.GameFramewerk;
+﻿using System;
+using LMD_GameFramewerk_PC.GameFramewerk;
 using LMD_GameFramewerk_PC.GameFramewerk.UI;
 
 namespace LMD_GameFramewerk_PC.GameEngine.Windows
@@ -75,6 +76,14 @@ namespace LMD_GameFramewerk_PC.GameEngine.Windows
 		public override void TouchUp(System.Windows.Forms.MouseEventArgs eventArgs)
 		{
 			TouchElements(eventArgs.X, eventArgs.Y, TypeTouch.Up);
+		}
+
+		public override void KeyboardDown(System.Windows.Forms.KeyEventArgs e)
+		{
+		}
+
+		public override void KeyboardUp(System.Windows.Forms.KeyEventArgs e)
+		{
 		}
 	}
 }

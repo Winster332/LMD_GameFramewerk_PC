@@ -62,5 +62,18 @@ namespace LMD_GameFramewerk_PC.GameEngine.Windows
 		public override void TouchUp(System.Windows.Forms.MouseEventArgs eventArgs)
 		{
 		}
+
+		public override void KeyboardDown(System.Windows.Forms.KeyEventArgs e)
+		{
+			switch (e.KeyCode)
+			{
+				case System.Windows.Forms.Keys.W: car.MoveX(-1); break;
+				case System.Windows.Forms.Keys.S: car.MoveX(1); break;
+			}
+		}
+
+		public override void KeyboardUp(System.Windows.Forms.KeyEventArgs e)
+		{
+		}
 	}
 }
