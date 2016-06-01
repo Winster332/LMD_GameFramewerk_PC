@@ -5,6 +5,7 @@ using LMD_GameFramewerk_PC.GameFramewerk.BaseGame.Physics;
 using LMD_GameFramewerk_PC.GameFramewerk.Windows;
 using Tao.OpenGl;
 using Tao.FreeGlut;
+using System;
 
 namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 {
@@ -31,6 +32,8 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 		{
 			InitializeComponent();
 			glView.InitializeContexts();
+
+			MScreen = new ManagementScreen(this);
 
 			this.Text = title;
 			this.Width = width;
@@ -59,7 +62,7 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 		/// <returns></returns>
 		public Screen GetStartScreen()
 		{
-			return new GameEngine.Windows.ScreenStart(this);
+			return MScreen.GetMainScreen();
 		}
 
 		/// <summary>
@@ -145,19 +148,6 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 			return this.Height;
 		}
 
-		#region Update and rendering game
-		private void GGame_Paint(object sender, PaintEventArgs e) // Обновляет текущий экран
-		{
-			System.Drawing.Graphics g = e.Graphics;
-			g.SmoothingMode = SmoothingMode.AntiAlias;
-
-			//	GetGraphics().SetGraphics(g); // Устанавливет графикс в текущем такте
-
-			
-
-			this.Invalidate();
-		}
-		#endregion
 		#region Mouse to current screen
 		private void GGame_MouseMove(object sender, MouseEventArgs e)
 		{
@@ -214,8 +204,6 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 
 		private void GGame_Load(object sender, System.EventArgs e)
 		{
-			MScreen = new ManagementScreen(this);
-
 			audio = new GAudio();
 			fileIO = new GFileIO();
 			graphics = new GGraphics(this);
@@ -234,6 +222,11 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 
 			DeltaTime = System.DateTime.Now.Millisecond;
 			PrevDeltaTime = System.DateTime.Now.Millisecond;
+		}
+
+		public void SetStartScreen(Screen screen)
+		{
+			MScreen.SetMainScreen(screen);
 		}
 	}
 }

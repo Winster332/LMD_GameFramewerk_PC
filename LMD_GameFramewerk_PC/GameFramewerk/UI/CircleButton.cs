@@ -69,8 +69,8 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.UI
 
 		public void SetRadius(float radius)
 		{
-			image.SetX(radius * 2);
-			image.SetY(radius * 2);
+			image.SetWidth(radius * 2);
+			image.SetHeight(radius * 2);
 		}
 
 		public float GetRadius()

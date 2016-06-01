@@ -62,5 +62,10 @@
 		/// </summary>
 		/// <returns></returns>
 		float GetWindowHeight();
+		/// <summary>
+		/// Указывает стартовый экран
+		/// </summary>
+		/// <param name="screen">Объект экрана</param>
+		void SetStartScreen(Screen screen);
 	}
 }

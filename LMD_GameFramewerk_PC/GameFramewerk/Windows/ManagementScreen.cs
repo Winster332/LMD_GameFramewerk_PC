@@ -4,6 +4,7 @@
 	{
 		private IGame game;
 		private Screen currentScreen;
+		private Screen mainScreen;
 
 		public ManagementScreen(IGame game)
 		{
@@ -56,6 +57,24 @@
 		public Screen GetCurrentScreen()
 		{
 			return currentScreen;
+		}
+
+		/// <summary>
+		/// Устанавливает главный экран
+		/// </summary>
+		/// <param name="screen">Объект экрана</param>
+		public void SetMainScreen(Screen screen)
+		{
+			mainScreen = screen;
+		}
+
+		/// <summary>
+		/// Возвращает главный экран
+		/// </summary>
+		/// <returns></returns>
+		public Screen GetMainScreen()
+		{
+			return mainScreen;
 		}
 	}
 }

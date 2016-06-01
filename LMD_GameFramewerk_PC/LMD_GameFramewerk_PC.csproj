@@ -90,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameEngine\GResource.cs" />
     <Compile Include="GameEngine\Windows\ScreenGame.cs" />
     <Compile Include="GameEngine\Windows\ScreenStart.cs" />
     <Compile Include="GameFramewerk\BaseGame\GAudio.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="GameFramewerk\BaseGame\GGraphics.cs" />
     <Compile Include="GameFramewerk\BaseGame\GInput.cs" />
     <Compile Include="GameFramewerk\BaseGame\GSystemParticles.cs" />
+    <Compile Include="GameFramewerk\BaseGame\InfoResource.cs" />
     <Compile Include="GameFramewerk\BaseGame\Physics\GPhysics.cs" />
     <Compile Include="GameFramewerk\BaseGame\Physics\InfoBody.cs" />
     <Compile Include="GameFramewerk\BaseGame\Physics\Solver.cs" />
@@ -164,6 +166,7 @@
   <ItemGroup>
     <None Include="Resources\text_lmd.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
