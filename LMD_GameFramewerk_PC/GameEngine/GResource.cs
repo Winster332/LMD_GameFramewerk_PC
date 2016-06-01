@@ -7,10 +7,14 @@ namespace LMD_GameFramewerk_PC.GameEngine
 	{
 		public const String PATH_ASSETS = @"Assets\";
 		public static uint tex_lmd;
+		public static uint tex_rect;
+		public static uint tex_circle;
 
 		public static void LoadTextures()
 		{
 			tex_lmd = GImage.LoadTexture(PATH_ASSETS + "text_lmd.png");
+			tex_rect = GImage.LoadTexture(PATH_ASSETS + "rect_1.png");
+			tex_circle = GImage.LoadTexture(PATH_ASSETS + "dot_f_5.png");
 		}
 	}
 }

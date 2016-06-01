@@ -19,7 +19,7 @@ namespace LMD_GameFramewerk_PC
 			Application.SetCompatibleTextRenderingDefault(false);
 
 			GGame game = new GGame("LMD_GF", 500, 500);
-			game.SetStartScreen(new GameEngine.Windows.ScreenStart(game));
+			game.SetStartScreen(new GameEngine.Windows.ScreenGame(game));
 
 			Application.Run(game);
 		}

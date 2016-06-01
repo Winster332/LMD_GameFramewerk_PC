@@ -56,7 +56,7 @@ namespace LMD_GameFramewerk_PC.GameFramewerk
 		/// <param name="image">Изображение для тела</param>
 		/// <returns></returns>
 		InfoBody AddRect(float x, float y, float w, float h, float angle, float density,
-			float friction, float restetution, Bitmap image, object userDate = null);
+			float friction, float restetution, uint texture, object userDate = null);
 
 		/// <summary>
 		/// Добавляет в мир новое тело физической модели - квадрат
@@ -110,7 +110,7 @@ namespace LMD_GameFramewerk_PC.GameFramewerk
 		/// <param name="image">Изображение для тела</param>
 		/// <returns></returns>
 		InfoBody AddCircle(float x, float y, float radius, float angle, float density,
-			float friction, float restetution, Bitmap image, object userDate = null);
+			float friction, float restetution, uint texture, object userDate = null);
 
 		/// <summary>
 		/// Добавляет в мир новое тело физической модели - круг
@@ -163,7 +163,7 @@ namespace LMD_GameFramewerk_PC.GameFramewerk
 		/// <param name="image">Изображение для тела</param>
 		/// <returns></returns>
 		InfoBody AddVert(float x, float y, Vec2[] vert, float angle, float density,
-			float friction, float restetution, Bitmap image, object userDate = null);
+			float friction, float restetution, uint texture, object userDate = null);
 
 		/// <summary>
 		/// Добавляет в мир новое тело произвольной физической модели
