@@ -88,12 +88,11 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.UI
 			Gl.glMatrixMode(Gl.GL_MODELVIEW);
 			Gl.glLoadIdentity();
 
-			if (IsCamera)
-				Gl.glTranslated(x + game.GetCamera().GetX(), y + game.GetCamera().GetY(), 0);
-			else Gl.glTranslated(x, y, 0);
-
-			if (texture != -1)
-				Gl.glBindTexture(Gl.GL_TEXTURE_2D, texture);
+		//	if (IsCamera)
+		//		Gl.glTranslated(x + game.GetCamera().GetX(), y + game.GetCamera().GetY(), 0);
+			Gl.glTranslated(x, y, 0);
+			
+			Gl.glBindTexture(Gl.GL_TEXTURE_2D, texture);
 
 			Gl.glScaled(scaleX, scaleY, 0);
 			Gl.glRotated(angle * (180 / (float)System.Math.PI), 0, 0, 1);

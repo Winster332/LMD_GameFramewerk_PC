@@ -7,5 +7,10 @@
 		void SetY(float value);
 		float GetX();
 		float GetY();
+		void SetScale(float x, float y);
+		void SetScaleX(float value);
+		void SetScaleY(float value);
+		float GetScaleX();
+		float GetScaleY();
 	}
 }

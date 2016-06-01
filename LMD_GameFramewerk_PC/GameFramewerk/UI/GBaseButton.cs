@@ -31,17 +31,11 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.UI
 
 		public override float GetX()
 		{
-			if (IsCamera)
-				return image.GetX() + game.GetCamera().GetX();
-
 			return image.GetX();
 		}
 
 		public override float GetY()
 		{
-			if (IsCamera)
-				return image.GetY() + game.GetCamera().GetY();
-
 			return image.GetY();
 		}
 

@@ -51,16 +51,6 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 			Gl.glBlendFunc(Gl.GL_SRC_ALPHA, Gl.GL_ONE_MINUS_SRC_ALPHA);
 		}
 
-		public void SetGraphics(Graphics g)
-		{
-			graphics = g;
-		}
-
-		public Graphics GetGraphics()
-		{
-			return graphics;
-		}
-
 		public int GetSurfaceWidth()
 		{
 			return game.glView.Width;
@@ -74,6 +64,12 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 		public void BeginRender()
 		{
 			Gl.glClear(Gl.GL_COLOR_BUFFER_BIT);
+
+			Gl.glMatrixMode(Gl.GL_PROJECTION);
+			Gl.glLoadIdentity();
+			Glu.gluOrtho2D(-game.GetCamera().GetX(), GetSurfaceWidth() + (-game.GetCamera().GetX()),
+				-game.GetCamera().GetY(), GetSurfaceHeight() + (-game.GetCamera().GetY()));
+			Gl.glScalef(game.GetCamera().GetScaleX(), game.GetCamera().GetScaleY(), 1);
 		}
 
 		public void EndRender()
