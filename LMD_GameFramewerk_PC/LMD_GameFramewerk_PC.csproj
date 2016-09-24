@@ -141,6 +141,7 @@
     <Compile Include="GameFramewerk\UI\GImage.cs" />
     <Compile Include="GameFramewerk\UI\RectButton.cs" />
     <Compile Include="GameFramewerk\UI\TypeTouch.cs" />
+    <Compile Include="GameFramewerk\UTIL\Logger.cs" />
     <Compile Include="GameFramewerk\Windows\Intent.cs" />
     <Compile Include="GameFramewerk\Windows\ManagementScreen.cs" />
     <Compile Include="Program.cs" />
