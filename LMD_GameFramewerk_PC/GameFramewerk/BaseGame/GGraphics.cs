@@ -8,7 +8,7 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 {
 	public class GGraphics : IGraphics
 	{
-		private Graphics graphics;
+		private const float COLOR_CONVERT = 255;
 		private GGame game;
 
 		public GGraphics(GGame game)
@@ -70,6 +70,20 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 			Glu.gluOrtho2D(-game.GetCamera().GetX(), GetSurfaceWidth() + (-game.GetCamera().GetX()),
 				-game.GetCamera().GetY(), GetSurfaceHeight() + (-game.GetCamera().GetY()));
 			Gl.glScalef(game.GetCamera().GetScaleX(), game.GetCamera().GetScaleY(), 1);
+		}
+
+		public void DrawLine(float x1, float y1, float x2, float y2, float width, int R, int G, int B)
+		{
+			Gl.glLoadIdentity();
+			Gl.glMatrixMode(Gl.GL_MODELVIEW);
+			Gl.glPushMatrix();
+			Gl.glLineWidth(width);
+			Gl.glBegin(Gl.GL_LINES);
+			Gl.glColor3d(R / COLOR_CONVERT, G / COLOR_CONVERT, B / COLOR_CONVERT);
+			Gl.glVertex3f(x1, y1, 0.0f); // origin of the line
+			Gl.glVertex3f(x2, y2, 0.0f); // ending point of the line
+			Gl.glEnd();
+			Gl.glPopMatrix();
 		}
 
 		public void EndRender()
