@@ -80,10 +80,38 @@ namespace LMD_GameFramewerk_PC.GameFramewerk.BaseGame
 			Gl.glLineWidth(width);
 			Gl.glBegin(Gl.GL_LINES);
 			Gl.glColor3d(R / COLOR_CONVERT, G / COLOR_CONVERT, B / COLOR_CONVERT);
-			Gl.glVertex3f(x1, y1, 0.0f); // origin of the line
-			Gl.glVertex3f(x2, y2, 0.0f); // ending point of the line
+			Gl.glVertex3f(x1, y1, 0.0f);
+			Gl.glVertex3f(x2, y2, 0.0f);
 			Gl.glEnd();
 			Gl.glPopMatrix();
+		}
+		public void DrawLines(PointF[] points, float width, int R, int G, int B)
+		{
+			Gl.glLoadIdentity();
+			Gl.glMatrixMode(Gl.GL_MODELVIEW);
+			Gl.glPushMatrix();
+			Gl.glLineWidth(width);
+			Gl.glBegin(Gl.GL_LINES);
+			Gl.glColor3d(R / COLOR_CONVERT, G / COLOR_CONVERT, B / COLOR_CONVERT);
+
+			for (int i = 0; i < points.Length; i++)
+			{
+				Gl.glVertex3f(points[i].X, points[i].Y, 0.0f);
+			}
+		
+			Gl.glEnd();
+			Gl.glPopMatrix();
+		}
+
+		public void DrawText(string text, float width, int R, int G, int B)
+		{
+			Gl.glColor3d(R / COLOR_CONVERT, G / COLOR_CONVERT, B / COLOR_CONVERT);
+			Gl.glRasterPos3f(0, 0, 0);
+
+			for (int i = 0; i < text.Length; i++)
+			{
+				Glut.glutBitmapCharacter(Glut.GLUT_BITMAP_TIMES_ROMAN_10, text[i]);
+			}
 		}
 
 		public void EndRender()
